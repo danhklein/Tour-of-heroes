@@ -9,9 +9,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 const core_1 = require('@angular/core');
-class Hero {
-}
-exports.Hero = Hero;
 const HEROES = [
     { id: 11, name: 'Mr. Nice' },
     { id: 12, name: 'Narco' },
@@ -95,14 +92,9 @@ AppComponent = __decorate([
        <span class="badge">{{hero.id}}</span> {{hero.name}}
     </li>
   </ul>
-  <div *ngIf="selectedHero">
-    <h2>{{selectedHero.name}} details!</h2>
-    <div><label>id: </label>{{selectedHero.id}}</div>
-    <div>
-      <label>name: </label>
-      <input [(ngModel)]="selectedHero.name" placeholder="name"/>
-    </div>
-  </div>
+  <my-hero-detail [hero]="selectedHero"></my-hero-detail>
+
+
   `
     }), 
     __metadata('design:paramtypes', [])

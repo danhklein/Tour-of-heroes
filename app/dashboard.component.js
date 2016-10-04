@@ -8,40 +8,31 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-// Keep the Input import for now, we'll remove it later:
 const core_1 = require('@angular/core');
 const router_1 = require('@angular/router');
-const common_1 = require('@angular/common');
-const hero_1 = require('./hero');
 const hero_service_1 = require('./hero.service');
-let HeroDetailComponent = class HeroDetailComponent {
-    constructor(heroService, route, location) {
+let DashboardComponent = class DashboardComponent {
+    constructor(router, heroService) {
+        this.router = router;
         this.heroService = heroService;
-        this.route = route;
-        this.location = location;
+        this.heroes = [];
     }
     ngOnInit() {
-        this.route.params.forEach((params) => {
-            let id = +params['id'];
-            this.heroService.getHero(id)
-                .then(hero => this.hero = hero);
-        });
+        this.heroService.getHeroes()
+            .then(heroes => this.heroes = heroes.slice(1, 5));
     }
-    goBack() {
-        this.location.back();
+    gotoDetail(hero) {
+        let link = ['/detail', hero.id];
+        this.router.navigate(link);
     }
 };
-__decorate([
-    core_1.Input(), 
-    __metadata('design:type', hero_1.Hero)
-], HeroDetailComponent.prototype, "hero", void 0);
-HeroDetailComponent = __decorate([
+DashboardComponent = __decorate([
     core_1.Component({
         moduleId: module.id,
-        selector: 'my-hero-detail',
-        templateUrl: 'hero-detail.component.html'
+        selector: 'my-dashboard',
+        templateUrl: 'dashboard.component.html'
     }), 
-    __metadata('design:paramtypes', [hero_service_1.HeroService, router_1.ActivatedRoute, common_1.Location])
-], HeroDetailComponent);
-exports.HeroDetailComponent = HeroDetailComponent;
-//# sourceMappingURL=hero-detail.component.js.map
+    __metadata('design:paramtypes', [router_1.Router, hero_service_1.HeroService])
+], DashboardComponent);
+exports.DashboardComponent = DashboardComponent;
+//# sourceMappingURL=dashboard.component.js.map

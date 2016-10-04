@@ -12,19 +12,23 @@ const core_1 = require('@angular/core');
 const platform_browser_1 = require('@angular/platform-browser');
 const forms_1 = require('@angular/forms');
 const app_component_1 = require('./app.component');
+const dashboard_component_1 = require('./dashboard.component');
 const heroes_component_1 = require('./heroes.component');
 const hero_detail_component_1 = require('./hero-detail.component');
 const hero_service_1 = require('./hero.service');
+const app_routing_1 = require('./app.routing');
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
     core_1.NgModule({
         imports: [
             platform_browser_1.BrowserModule,
-            forms_1.FormsModule
+            forms_1.FormsModule,
+            app_routing_1.routing
         ],
         declarations: [
             app_component_1.AppComponent,
+            dashboard_component_1.DashboardComponent,
             hero_detail_component_1.HeroDetailComponent,
             heroes_component_1.HeroesComponent
         ],
